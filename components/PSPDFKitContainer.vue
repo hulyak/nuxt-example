@@ -1,9 +1,10 @@
 <template>
-  <div class="pdf-container" ref="viewer"></div>
+  <div class="pdf-container"></div>
 </template>
 
 <script>
 import PSPDFKit from "pspdfkit";
+
 /**
  * PSPDFKit for Web example component.
  */
@@ -36,14 +37,13 @@ export default {
       }
     },
   },
-
   /**
    * Our component has the `loadPSPDFKit` method. This unloads and cleans up the component and triggers document loading.
    */
   methods: {
     async loadPSPDFKit() {
       PSPDFKit.unload(".pdf-container");
-      await PSPDFKit.load({
+      return PSPDFKit.load({
         // access the pdfFile from props
         document: this.pdfFile,
         container: ".pdf-container",

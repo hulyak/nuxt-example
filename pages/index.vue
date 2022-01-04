@@ -7,20 +7,19 @@
 </template>
 
 <script>
-import PSPDFKitContainer from "../components/PSPDFKitContainer";
+import PSPDFKitContainer from "@/components/PSPDFKitContainer";
 
 export default {
+  data() {
+    return {
+      pdfFile: this.pdfFile || "/example.pdf",
+    };
+  },
   /**
    * Render the `PSPDFKitContainer` component.
    */
   components: {
     PSPDFKitContainer,
-  },
-
-  data() {
-    return {
-      pdfFile: this.pdfFile || "./document.pdf",
-    };
   },
   /**
    * Our component has two methods — one to check when the document is loaded, and the other to open the document.
@@ -69,9 +68,5 @@ input[type="file"] {
   font: inherit;
   font-size: 16px;
   font-weight: bold;
-}
-
-.pdf-container {
-  height: 100vh;
 }
 </style>
