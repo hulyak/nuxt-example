@@ -10,6 +10,7 @@
 import PSPDFKitContainer from "@/components/PSPDFKitContainer";
 
 export default {
+  name: "app",
   data() {
     return {
       pdfFile: this.pdfFile || "/example.pdf",
