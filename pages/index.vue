@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import PSPDFKitContainer from "@/components/PSPDFKitContainer";
+import PSPDFKitContainer from "../components/PSPDFKitContainer.vue";
 
 export default {
   name: "app",
   data() {
     return {
-      pdfFile: this.pdfFile || "/example.pdf",
+      pdfFile: this.pdfFile || "/document.pdf",
     };
   },
   /**
