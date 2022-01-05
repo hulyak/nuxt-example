@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import PSPDFKit from "pspdfkit";
-
 /**
  * PSPDFKit for Web example component.
  */
@@ -19,6 +17,7 @@ export default {
       required: true,
     },
   },
+  PSPDFKit: null,
   /**
    * We wait until the template has been rendered to load the document into the library.
    */
@@ -42,21 +41,27 @@ export default {
    */
   methods: {
     async loadPSPDFKit() {
-      PSPDFKit.unload(".pdf-container");
-      return PSPDFKit.load({
-        // access the pdfFile from props
-        document: this.pdfFile,
-        container: ".pdf-container",
+      import('pspdfkit').then((PSPDFKit) => {
+        this.PSPDFKit = PSPDFKit;
+        PSPDFKit.unload(".pdf-container");
+        return PSPDFKit.load({
+          // access the pdfFile from props
+          document: this.pdfFile,
+          container: ".pdf-container",
+          baseUrl: 'http://localhost:3000/js/'
+        });
+      }).catch((error) => {
+        console.error(error);
       });
-    },
+    }
   },
 
   /**
    * Clean up when the component is unmounted so it's ready to load another document (not needed in this example).
    */
   beforeUnmount() {
-    PSPDFKit.unload(".pdf-container");
-  },
+    this.PSPDFKit.unload(".pdf-container");
+  }
 };
 </script>
 
